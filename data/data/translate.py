@@ -1,4 +1,3 @@
-# program translate
 import asyncio
 from googletrans import Translator, LANGUAGES
 
@@ -20,10 +19,7 @@ async def translate_text_async(text_to_translate, target_lang):
         print(f"Ошибка перевода: {e}")
         print("Проверьте подключение к интернету.\n")
 
-
-def translate_text(text_to_translate, target_lang):
-    asyncio.run(translate_text_async(text_to_translate, target_lang))
-
+translate_text = lambda text_to_translate, target_lang: asyncio.run(translate_text_async(text_to_translate, target_lang))
 
 # Основной цикл программы
 target_language = 'en'
@@ -49,18 +45,6 @@ while True:
     if text.lower() == "стоп":
         print("Завершение работы...")
         break
-
-    elif text.lower() == "/ru":
-        target_language = 'ru'
-        lang_name = LANGUAGES.get('ru', 'русский').capitalize()
-        print(f"✓ Теперь переводим на {lang_name}")
-        continue
-
-    elif text.lower() == "/en":
-        target_language = 'en'
-        lang_name = LANGUAGES.get('en', 'английский').capitalize()
-        print(f"✓ Теперь переводим на {lang_name}")
-        continue
 
     elif text.lower().startswith("/"):
         lang_code = text[1:].lower()
