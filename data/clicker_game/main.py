@@ -1,7 +1,18 @@
 # main.py - Запуск игры и GUI
+import sys
+import os
 import tkinter as tk
 from core import Game
 
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from core import Game
+    import tkinter as tk
+except ImportError as e:
+    print(f"Error importing modules: {e}")
+    input("Press Enter to exit...")
+    sys.exit(1)
 
 class ClickerApp:
     def __init__(self):
